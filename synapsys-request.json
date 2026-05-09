@@ -1,0 +1,54 @@
+{
+    "title": "SynapSysRequest",
+    "type": "object",
+    "required": [
+        "provider",
+        "model",
+        "query"
+    ],
+    "properties": {
+        "version": {
+            "type": "string",
+            "default": "1"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "provider": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "query": {
+            "type": [
+                "string",
+                "object"
+            ]
+        },
+        "context": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "options": {
+            "type": "object",
+            "properties": {
+                "temperature": {
+                    "type": "number"
+                },
+                "maxTokens": {
+                    "type": "integer"
+                },
+                "stream": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": true
+        },
+        "providerOptions": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": false
+}
