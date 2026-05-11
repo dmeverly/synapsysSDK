@@ -9,9 +9,16 @@ if str(repo_root) not in sys.path:
 from src.python.Generator import Generator
 
 if __name__ == "__main__":
-    print(Generator(
-        "gemini",
-        "gemini-2.5-pro",
-        "What is the capital of France?",
-        os.getenv("GEMINI_API_KEY")
-    ).generate())
+    # Create a Generator with the new SDK API
+    # Provider API key and SynapSys key are sent to the SynapSys service
+    generator = Generator(
+        provider="gemini",
+        model="gemini-2.0-flash",
+        query="What is the capital of France?",
+        api_key=os.getenv("GEMINI_API_KEY", "your-gemini-key"),
+        synapsys_key=os.getenv("SYNAPSYS_KEY", "your-synapsys-key"),
+        service_endpoint="http://localhost:8080/api/generate"
+    )
+    
+    response = generator.generate()
+    print("Response:", response)

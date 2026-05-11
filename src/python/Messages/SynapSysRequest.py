@@ -1,13 +1,13 @@
-from dataclasses import dataclass, field
-from typing import Any, Optional
+from dataclasses import dataclass, asdict
+from typing import Union
+import json
 
 @dataclass
 class SynapSysRequest:
     provider: str
     model: str
-    query: Any
-    version: str = "1"
-    requestId: Optional[str] = None
-    context: Optional[dict] = field(default_factory=dict)
-    options: Optional[dict] = field(default_factory=dict)
-    providerOptions: Optional[dict] = field(default_factory=dict)
+    query: Union[str, dict]
+    apiKey: str
+    
+    def serialize(self) -> str:
+        return json.dumps(asdict(self)).encode('utf-8')
